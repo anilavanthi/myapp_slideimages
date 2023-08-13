@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Colleges</title>
+</head>
+<body>
+    <h1>Avanthi's St Theressa Engg.</h1>
+    <ul>
+        {% for college in colleges %}
+            <li>
+                <h2>{{ college.name }}</h2>
+                <p>Activities:</p>
+                <p>{{ college.activities | replace('\n', '<br>') | safe }}</p>
+                {% if college.image_path %}
+                    <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="{{ college.name }} Image" width="300">
+                {% else %}
+                    <p>No Image Available</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
