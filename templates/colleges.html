@@ -2,19 +2,31 @@
 <html>
 <head>
     <title>Colleges</title>
+    <style>
+        /* Add CSS to control image size */
+        img {
+            max-width: 50000px; /* Set maximum width for images */
+            max-height: 400px; /* Set maximum height for images */
+        }
+        
+        /* Add CSS to increase font size of activities */
+        .activities {
+            font-size: 21px; /* Adjust the font size as needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Avanthi's St Theressa Engg.</h1>
+    <h1>Colleges</h1>
     <ul>
         {% for college in colleges %}
             <li>
                 <h2>{{ college.name }}</h2>
-                <p>Activities:</p>
-                <p>{{ college.activities | replace('\n', '<br>') | safe }}</p>
+                <p class="activities">{{ college.activities }}</p>
                 {% if college.image_path %}
-                    <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="{{ college.name }} Image" width="300">
-                {% else %}
-                    <p>No Image Available</p>
+                    <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image">
+                {% endif %}
+                {% if request.args.get('new_college_id') == None %}
+                    <a href="{{ url_for('delete', college_id=college.id) }}" class="btn btn-danger">Delete</a>
                 {% endif %}
             </li>
         {% endfor %}
