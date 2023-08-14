@@ -19,11 +19,11 @@
                             <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image" class="college-image">
                         </div>
                     {% endif %}
-                    {% if college.website_url %}
-                        <div class="college-website">
+                    <div class="college-website">
+                        {% if college.website_url %}
                             <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                     {% if request.args.get('new_college_id') == None %}
                         <a href="{{ url_for('delete', college_id=college.id) }}" class="btn btn-danger">Delete</a>
                     {% endif %}
@@ -33,6 +33,8 @@
     </div>
 </body>
 </html>
+
+
 
 
 

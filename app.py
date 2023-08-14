@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
+
 app = Flask(__name__, static_url_path='/static')
 
-#app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['DATABASE'] = 'college_info.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.getcwd(), app.config['DATABASE'])}"
@@ -19,6 +19,7 @@ class College(db.Model):
     name = db.Column(db.String(100), nullable=False)
     activities = db.Column(db.Text, nullable=False)
     image_path = db.Column(db.String(200))
+    website_url = db.Column(db.String(200))  # New field for the website URL
 
     def __repr__(self):
         return f'<College {self.name}>'
@@ -35,22 +36,23 @@ def index():
 def submit():
     college_name = request.form['college_name']
     activities = request.form['activities']
+    website_url = request.form['website_url']  # Get the website URL from the form
     image = request.files['image']
 
     if image:
         filename = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
         image.save(filename)
 
-    college = College(name=college_name, activities=activities, image_path=image.filename)
+    college = College(name=college_name, activities=activities, image_path=image.filename, website_url=website_url)
     db.session.add(college)
     db.session.commit()
 
-    return redirect(url_for('colleges', new_college_id=college.id))  # Pass the new college's ID as a parameter
+    return redirect(url_for('colleges', new_college_id=college.id))
 
 @app.route('/delete/<int:college_id>', methods=['GET', 'POST'])
 def delete(college_id):
     college = College.query.get_or_404(college_id)
-    
+
     if college.image_path:
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], college.image_path)
         if os.path.exists(image_path):
@@ -63,10 +65,9 @@ def delete(college_id):
 
 @app.route('/colleges')
 def colleges():
-    new_college_id = request.args.get('new_college_id')  # Get the parameter
+    new_college_id = request.args.get('new_college_id')
     colleges = College.query.all()
 
-    # If a new college was added, filter the list to show only that college
     if new_college_id:
         colleges = [college for college in colleges if college.id == int(new_college_id)]
 
