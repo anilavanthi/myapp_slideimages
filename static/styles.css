@@ -1,23 +1,53 @@
-/* static/styles.css */
+/* Reset some default margin and padding for the body */
+body {
+  margin: 0;
+  padding: 0;
+}
 
-/* Override Bootstrap table border thickness */
-.table {
-    border: 2px solid #dee2e6;
-  }
-  
-  /* Override Bootstrap form input border thickness */
-  .form-control {
-    border: 2px solid #ced4da;
-  }
-  
-  /* Additional styling for the form submit button */
-  .btn-primary {
-    background-color: #007bff;
-    border: 2px solid #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border: 2px solid #0056b3;
-  }
-  
+/* Center the content horizontally and vertically */
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column; /* Stack content vertically */
+}
+
+/* Style for each college item */
+.college-item {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex; /* Display children in a row layout */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+  justify-content: center; /* Vertically center children */
+}
+
+/* Style for college information */
+.college-content {
+  margin-bottom: 10px;
+}
+
+/* Style for the college image */
+.college-image {
+  max-width: 100%; /* Make the image responsive */
+  max-height: 600px; /* Set maximum height for images */
+  margin-top: 10px;
+}
+
+/* Style for the delete button */
+.btn {
+  margin-top: 10px;
+}
+.activities {
+  font-size: 23px; /* Increase the font size to make activities text larger */
+}
+
+
+

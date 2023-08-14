@@ -2,37 +2,42 @@
 <html>
 <head>
     <title>Colleges</title>
-    <style>
-        /* Add CSS to control image size */
-        img {
-            max-width: 50000px; /* Set maximum width for images */
-            max-height: 400px; /* Set maximum height for images */
-        }
-        
-        /* Add CSS to increase font size of activities */
-        .activities {
-            font-size: 21px; /* Adjust the font size as needed */
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Colleges</h1>
-    <ul>
-        {% for college in colleges %}
-            <li>
-                <h2>{{ college.name }}</h2>
-                <p class="activities">{{ college.activities }}</p>
-                {% if college.image_path %}
-                    <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image">
-                {% endif %}
-                {% if request.args.get('new_college_id') == None %}
-                    <a href="{{ url_for('delete', college_id=college.id) }}" class="btn btn-danger">Delete</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Welcome to College Information Portal</h1>
+        <ul class="college-list">
+            {% for college in colleges %}
+                <li class="college-item">
+                    <div class="college-content">
+                        <h2>{{ college.name }}</h2>
+                        <p class="activities">{{ college.activities }}</p>
+                    </div>
+                    {% if college.image_path %}
+                        <div class="image-container">
+                            <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image" class="college-image">
+                        </div>
+                    {% endif %}
+                    {% if college.website_url %}
+                        <div class="college-website">
+                            <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
+                        </div>
+                    {% endif %}
+                    {% if request.args.get('new_college_id') == None %}
+                        <a href="{{ url_for('delete', college_id=college.id) }}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
+
+
+
+
+
 
 
 

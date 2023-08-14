@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
+app = Flask(__name__, static_url_path='/static')
 
-app = Flask(__name__)
+#app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['DATABASE'] = 'college_info.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.getcwd(), app.config['DATABASE'])}"
