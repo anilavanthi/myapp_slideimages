@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload College Information</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .label {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .large-textarea {
+            font-size: 18px;
+            width: 100%;
+            height: 120px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 style="text-align: center;">Upload College Information</h1>
+        <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+            <label for="college_name" class="label">College Name:</label>
+            <input type="text" id="college_name" name="college_name" style="width: 100%; height: 40px; font-size: 20px; border: 1px solid #ddd; border-radius: 5px; padding: 5px;"><br><br>
+
+            <label for="activities" class="label">Activities:</label>
+            <textarea id="activities" name="activities" class="large-textarea" style="font-size: 16px;"></textarea><br><br>
+
+            <label for="image" class="label">Image:</label>
+            <input type="file" id="image" name="image" style="width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 5px;"><br><br>
+
+            <label for="website_url" class="label">Website URL:</label>
+            <input type="text" id="website_url" name="website_url" style="width: 100%; height: 40px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px; padding: 5px;"><br><br>
+
+            <input type="submit" value="Submit" class="button">
+        </form>
+    </div>
+</body>
+</html>

@@ -10,10 +10,8 @@
         <ul class="college-list">
             {% for college in colleges %}
                 <li class="college-item">
-                    <div class="college-content">
-                        <h2>{{ college.name }}</h2>
-                        <p class="activities">{{ college.activities }}</p>
-                    </div>
+                    <h2 class="college-name {% if college.name == "AVANTHI'S ST. THERESSA ENGINEERING COLLEGE" %}maroon-text{% endif %}">{{ college.name }}</h2>
+                    <p class="activities {% if college.activities == "HAPPY INDEPENDENCE DAY" %}green-text{% endif %}">{{ college.activities }}</p>
                     {% if college.image_path %}
                         <div class="image-container">
                             <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image" class="college-image">
@@ -24,15 +22,14 @@
                             <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
                         {% endif %}
                     </div>
-                    {% if request.args.get('new_college_id') == None %}
-                        <a href="{{ url_for('delete', college_id=college.id) }}" class="btn btn-danger">Delete</a>
-                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
     </div>
 </body>
 </html>
+
+
 
 
 

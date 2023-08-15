@@ -45,9 +45,35 @@ body {
 .btn {
   margin-top: 10px;
 }
-.activities {
-  font-size: 23px; /* Increase the font size to make activities text larger */
+/* Style for college name */
+.college-name {
+  font-size: 28px;
+  margin: 10px 0;
+  color: maroon; /* Set color for college name */
 }
 
+/* Style for college activities */
+.activities {
+  font-size: 23px;
+  margin-bottom: 20px;
+  color: green; /* Set color for activities text */
+}
+/* Style for the college website link */
+.college-website a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 29px;
+  margin-top: 10px;
+  display: block;
+}
+/* Custom color for maroon-text class */
+.maroon-text {
+  color: maroon;
+}
+
+/* Custom color for green-text class */
+.green-text {
+  color: green;
+}
 
 
