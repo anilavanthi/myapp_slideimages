@@ -3,6 +3,24 @@
 <head>
     <title>Colleges</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Additional styles for the slideshow */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .college-image {
+            max-width: 100%;
+            height: 800px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -12,22 +30,55 @@
                 <li class="college-item">
                     <h2 class="college-name {% if college.name == "AVANTHI'S ST. THERESSA ENGINEERING COLLEGE" %}maroon-text{% endif %}">{{ college.name }}</h2>
                     <p class="activities {% if college.activities == "HAPPY INDEPENDENCE DAY" %}green-text{% endif %}">{{ college.activities }}</p>
-                    {% if college.image_path %}
-                        <div class="image-container">
-                            <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image" class="college-image">
-                        </div>
-                    {% endif %}
-                    <div class="college-website">
-                        {% if college.website_url %}
-                            <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
+                    
+                    <div class="slideshow-container">
+                        {% if college.image_path %}
+                            <div class="mySlides">
+                                <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" class="college-image">
+                            </div>
                         {% endif %}
+                        {% if college.image_path_2 %}
+                            <div class="mySlides">
+                                <img src="{{ url_for('static', filename='uploads/' + college.image_path_2) }}" class="college-image">
+                            </div>
+                        {% endif %}
+                        {% if college.image_path_3 %}
+                            <div class="mySlides">
+                                <img src="{{ url_for('static', filename='uploads/' + college.image_path_3) }}" class="college-image">
+                            </div>
+                        {% endif %}
+                        <div class="college-website">
+                            {% if college.website_url %}
+                                <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
+                            {% endif %}
+                        </div>
+                        
                     </div>
+                    
                 </li>
             {% endfor %}
         </ul>
     </div>
+    
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change slide every 2 seconds
+        }
+    </script>
 </body>
 </html>
+
 
 
 

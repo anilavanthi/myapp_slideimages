@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Submission Success</title>
+    <title>College Information</title>
 </head>
 <body>
-    <h1>Success!</h1>
-    <p>College information and image uploaded successfully!</p>
-    <a href="{{ url_for('index') }}">Back to Upload Page</a>
+    <h1>Upload College Information</h1>
+    <form action="/submit" method="post" enctype="multipart/form-data">
+        <label for="college_name">College Name:</label>
+        <input type="text" name="college_name" required><br><br>
+        <label for="activities">Activities:</label>
+        <textarea name="activities" required></textarea><br><br>
+        <label for="website_url">College Website URL:</label>
+        <input type="text" name="website_url"><br><br>
+        <label for="image_1">Upload Image 1:</label>
+        <input type="file" name="image_1"><br><br>
+        <label for="image_2">Upload Image 2:</label>
+        <input type="file" name="image_2"><br><br>
+        <label for="image_3">Upload Image 3:</label>
+        <input type="file" name="image_3"><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
+
+
+
+
+
+

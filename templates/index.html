@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>College Information</title>
+    <title>Colleges</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Upload College Information</h1>
-    <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
-        <label for="college_name">College Name:</label>
-        <input type="text" name="college_name" required><br><br>
-        <label for="activities">Activities:</label>
-        <textarea name="activities" required></textarea><br><br>
-        <label for="website_url">College Website URL:</label>
-        <input type="text" name="website_url"><br><br>
-        <label for="image">Upload Image:</label>
-        <input type="file" name="image"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h1>Welcome to College Information Portal</h1>
+        <ul class="college-list">
+            {% for college in colleges %}
+                <li class="college-item">
+                    <h2 class="college-name {% if college.name == "AVANTHI'S ST. THERESSA ENGINEERING COLLEGE" %}maroon-text{% endif %}">{{ college.name }}</h2>
+                    <p class="activities {% if college.activities == "HAPPY INDEPENDENCE DAY" %}green-text{% endif %}">{{ college.activities }}</p>
+                    <div class="image-container">
+                        {% if college.image_path %}
+                            <img src="{{ url_for('static', filename='uploads/' + college.image_path) }}" alt="College Image" class="college-image">
+                        {% endif %}
+                        {% if college.image_path_2 %}
+                            <img src="{{ url_for('static', filename='uploads/' + college.image_path_2) }}" alt="College Image 2" class="college-image">
+                        {% endif %}
+                        {% if college.image_path_3 %}
+                            <img src="{{ url_for('static', filename='uploads/' + college.image_path_3) }}" alt="College Image 3" class="college-image">
+                        {% endif %}
+                    </div>
+                    <div class="college-website">
+                        {% if college.website_url %}
+                            <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
