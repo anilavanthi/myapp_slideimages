@@ -21,6 +21,8 @@ class College(db.Model):
     image_path = db.Column(db.String(200))
     image_path_2 = db.Column(db.String(200))
     image_path_3 = db.Column(db.String(200))
+    image_path_4 = db.Column(db.String(200))  
+    image_path_5 = db.Column(db.String(200))
     website_url = db.Column(db.String(200))
 
     def __repr__(self):
@@ -43,7 +45,8 @@ def submit():
         image_1 = request.files['image_1']
         image_2 = request.files['image_2']
         image_3 = request.files['image_3']
-
+        image_4 = request.files['image_4']
+        image_5 = request.files['image_5']
         if image_1:
             filename_1 = os.path.join(app.config['UPLOAD_FOLDER'], image_1.filename)
             image_1.save(filename_1)
@@ -53,13 +56,20 @@ def submit():
         if image_3:
             filename_3 = os.path.join(app.config['UPLOAD_FOLDER'], image_3.filename)
             image_3.save(filename_3)
-
+        if image_4:
+            filename_4 = os.path.join(app.config['UPLOAD_FOLDER'], image_4.filename)
+            image_4.save(filename_4)
+        if image_5:
+            filename_5 = os.path.join(app.config['UPLOAD_FOLDER'], image_5.filename)
+            image_5.save(filename_5)    
         college = College(
             name=college_name,
             activities=activities,
             image_path=image_1.filename,
             image_path_2=image_2.filename,
             image_path_3=image_3.filename,
+            image_path_4=image_4.filename,
+            image_path_5=image_5.filename,
             website_url=website_url
         )
         db.session.add(college)
@@ -86,7 +96,14 @@ def delete(college_id):
         image_path_3 = os.path.join(app.config['UPLOAD_FOLDER'], college.image_path_3)
         if os.path.exists(image_path_3):
             os.remove(image_path_3)
-
+    if college.image_path_4:
+        image_path_4 = os.path.join(app.config['UPLOAD_FOLDER'], college.image_path_4)
+        if os.path.exists(image_path_4):
+            os.remove(image_path_4)
+    if college.image_path_5:
+        image_path_5 = os.path.join(app.config['UPLOAD_FOLDER'], college.image_path_5)
+        if os.path.exists(image_path_5):
+            os.remove(image_path_5)        
     db.session.delete(college)
     db.session.commit()
 

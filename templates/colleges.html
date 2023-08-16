@@ -47,6 +47,16 @@
                                 <img src="{{ url_for('static', filename='uploads/' + college.image_path_3) }}" class="college-image">
                             </div>
                         {% endif %}
+                        {% if college.image_path_4 %}
+                            <div class="mySlides">
+                                <img src="{{ url_for('static', filename='uploads/' + college.image_path_4) }}" class="college-image">
+                            </div>
+                        {% endif %}
+                        {% if college.image_path_5 %}
+                            <div class="mySlides">
+                                <img src="{{ url_for('static', filename='uploads/' + college.image_path_5) }}" class="college-image">
+                            </div>
+                        {% endif %}
                         <div class="college-website">
                             {% if college.website_url %}
                                 <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>

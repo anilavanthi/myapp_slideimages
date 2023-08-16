@@ -22,6 +22,12 @@
                         {% if college.image_path_3 %}
                             <img src="{{ url_for('static', filename='uploads/' + college.image_path_3) }}" alt="College Image 3" class="college-image">
                         {% endif %}
+                        {% if college.image_path_4 %}
+                            <img src="{{ url_for('static', filename='uploads/' + college.image_path_4) }}" alt="College Image 4" class="college-image">
+                        {% endif %}
+                        {% if college.image_path_5 %}
+                            <img src="{{ url_for('static', filename='uploads/' + college.image_path_5) }}" alt="College Image 5" class="college-image">
+                        {% endif %}
                     </div>
                     <div class="college-website">
                         {% if college.website_url %}
