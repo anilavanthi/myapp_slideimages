@@ -24,6 +24,8 @@ class College(db.Model):
     image_path_4 = db.Column(db.String(200))  
     image_path_5 = db.Column(db.String(200))
     website_url = db.Column(db.String(200))
+    contact_number = db.Column(db.String(20))
+    contact_number_2 = db.Column(db.String(20))
 
     def __repr__(self):
         return f'<College {self.name}>'
@@ -42,6 +44,8 @@ def submit():
         college_name = request.form['college_name']
         activities = request.form['activities']
         website_url = request.form['website_url']
+        contact_number = request.form['contact_number']
+        contact_number_2 = request.form['contact_number_2']
         image_1 = request.files['image_1']
         image_2 = request.files['image_2']
         image_3 = request.files['image_3']
@@ -70,7 +74,10 @@ def submit():
             image_path_3=image_3.filename,
             image_path_4=image_4.filename,
             image_path_5=image_5.filename,
-            website_url=website_url
+            website_url=website_url,
+            contact_number=contact_number,
+            contact_number_2=contact_number_2
+            
         )
         db.session.add(college)
         db.session.commit()

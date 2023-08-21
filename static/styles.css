@@ -13,6 +13,7 @@ body {
   align-items: center;
   text-align: center;
   flex-direction: column; /* Stack content vertically */
+ 
 }
 
 /* Style for each college item */
@@ -27,6 +28,8 @@ body {
   flex-direction: column; /* Stack children vertically */
   align-items: center; /* Center children horizontally */
   justify-content: center; /* Vertically center children */
+  display: flex;
+  
 }
 
 /* Style for college information */
@@ -39,6 +42,7 @@ body {
   max-width: 100%; /* Make the image responsive */
   max-height: 800px; /* Set maximum height for images */
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Style for the delete button */
@@ -55,7 +59,7 @@ body {
 
 /* Style for college activities */
 .activities {
-  font-size: 25px;
+  font-size: 29px;
   margin-bottom: 20px;
   color: green; /* Set color for activities text */
 }
@@ -78,4 +82,92 @@ body {
 .green-text {
   color: green;
 }
+.activities-scroll {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
 
+.activities-content {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(-100%); /* Adjust based on the content width */
+  }
+}
+.phone-number {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+}
+.college-details {
+  display: flex; /* Use flexbox to align items horizontally */
+  justify-content: space-between; /* Create space between the elements */
+  align-items: center; /* Align items vertically in the center */
+  margin-top: 10px; /* Optional margin for spacing */
+  display: flex;
+  
+}
+
+.website-url p,
+.phone-number p {
+  font-size: 25px; /* Adjust the font size as needed */
+  color: maroon;    /* Change the color to your desired color */
+  margin: 0;      /* Reset margin for the <p> element */
+}
+
+.website-url a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Style for the scrolling activities */
+.activities-scroll {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.activities-content {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Style for the contact number and website URL */
+.college-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+.phone-number {
+  font-size: 25px;
+  color: maroon;
+  margin: 0;
+}
+
+.website-url {
+  font-size: 25px;
+  color: #007bff;
+  margin: 0;
+}

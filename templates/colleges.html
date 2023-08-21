@@ -29,8 +29,13 @@
             {% for college in colleges %}
                 <li class="college-item">
                     <h2 class="college-name {% if college.name == "AVANTHI'S ST. THERESSA ENGINEERING COLLEGE" %}maroon-text{% endif %}">{{ college.name }}</h2>
-                    <p class="activities {% if college.activities == "HAPPY INDEPENDENCE DAY" %}green-text{% endif %}">{{ college.activities }}</p>
-                    
+                    <div class="activities-scroll">
+                        <div class="activities-content">
+                            {% for college in colleges %}
+                                <p class="activities {% if college.activities == "HAPPY INDEPENDENCE DAY" %}green-text{% endif %}">{{ college.activities }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
                     <div class="slideshow-container">
                         {% if college.image_path %}
                             <div class="mySlides">
@@ -57,12 +62,17 @@
                                 <img src="{{ url_for('static', filename='uploads/' + college.image_path_5) }}" class="college-image">
                             </div>
                         {% endif %}
-                        <div class="college-website">
-                            {% if college.website_url %}
-                                <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
+                        <div class="college-details">
+                            <div class="website-url">
+                                {% if college.website_url %}
+                                    <a href="{{ college.website_url }}" target="_blank">Visit College Website</a>
+                                {% endif %}
+                            </div>
+                            {% if college.contact_number %}
+                                <div class="phone-number">
+                                    <p>Contact Number: {{ college.contact_number }}</p>
+                                </div>
                             {% endif %}
-                        </div>
-                        
                     </div>
                     
                 </li>
@@ -88,7 +98,6 @@
     </script>
 </body>
 </html>
-
 
 
 
